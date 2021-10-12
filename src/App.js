@@ -3,10 +3,13 @@ import React from "react";
 //Componenes and Pages
 import Home from "./pages/Home";
 
+//Style
+import GlobalStyle from "./componenst/GlobalStyles";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello Ignite!</h1>
+      <GlobalStyle />
       <Home />
     </div>
   );
