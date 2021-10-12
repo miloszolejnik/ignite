@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
 //Componenes and Pages
 import Home from "./pages/Home";
@@ -10,7 +11,9 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Home />
+      <Route path={["/game/:id", "/"]}>
+        <Home />
+      </Route>
     </div>
   );
 }
