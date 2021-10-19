@@ -14,6 +14,7 @@ import GameDetail from "../componenst/GameDetail"
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+
 const Home = () => {
 
     //Get the current location

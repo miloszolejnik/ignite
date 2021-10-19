@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { smallImage } from "../util";
 
 //Styling and Animation
 import styled from "styled-components";
@@ -8,19 +9,65 @@ import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
 
-const GameDetail = () => {
+//IMGAES
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import xbox from "../img/xbox.svg";
+import nintendo from "../img/nintendo.svg";
+import apple from "../img/apple.svg"
+import gamepad from "../img/gamepad.svg"
+
+//STAR IMAGES
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png"
+
+const GameDetail = ({ pathID }) => {
     //Exit Detail
     const history = useHistory();
     const exitDetailHandler = (e) => {
         const element = e.target;
         if (element.classList.contains("shadow")) {
-
             document.body.style.overflow = "auto";
             history.push("/");
         }
+    };
+
+    //GET STARS
+
+    const getStars = () => {
+        const stars = [];
+        const rating = Math.floor(game.rating);
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars.push(<img alt="star" key={i} src={starFull}></img>)
+            } else {
+                stars.push(<img alt="star" key={i} src={starEmpty}></img>)
+            }
+        }
+        return stars;
     }
+
+    //GET PLATFORM IMAGES
+    const getPlatform = (platform) => {
+        switch (platform) {
+            case "PlayStation 4":
+                return playstation;
+            case "Xbox One":
+                return xbox;
+            case "PC":
+                return steam;
+            case "Nintendo Switch":
+                return nintendo;
+            case "iOS":
+                return apple;
+            default:
+                return gamepad;
+        }
+    }
+
     //DATA
     const { screen, game, isLoading } = useSelector((state) => state.detail);
+
     return (
         <>
             {!isLoading && (
@@ -30,25 +77,30 @@ const GameDetail = () => {
                             <div className="rating">
                                 <h3>{game.name}</h3>
                                 <p>Rating: {game.rating}</p>
+                                {getStars(game.rating)}
                             </div>
                             <Info>
                                 <h3>Platforms</h3>
                                 <Platforms>
                                     {game.platforms.map(data => (
-                                        <h3 key={data.platform.id}>{data.platform.name}</h3>
+                                        <img
+                                            key={data.platform.id}
+                                            src={getPlatform(data.platform.name)}
+                                            alt={data.platform.name}
+                                        />
                                     ))}
                                 </Platforms>
                             </Info>
                         </Stats>
                         <Media>
-                            <img src={game.background_image} alt={game.background_image} />
+                            <img src={smallImage(game.background_image, 1280)} alt={game.background_image} />
                         </Media>
                         <Description>
                             <p>{game.description}</p>
                         </Description>
                         <div className="gallery">
                             {screen.data.results.map(screen => (
-                                <img src={screen.image} key={screen.id} alt={screen.image} />
+                                <img src={smallImage(screen.image, 1280)} key={screen.id} alt={screen.image} />
                             ))}
                         </div>
                     </Detail>
@@ -64,6 +116,7 @@ const CardShadow = styled(motion.div)`
     overflow: scroll;
     background-color: rgba(0,0,0, 0.5);
     position: fixed;
+    z-index: 5;
     top: 0;
     left: 0;
     &::-webkit-scrollbar{
@@ -83,6 +136,7 @@ const Detail = styled(motion.div)`
     background-color: white;
     position: absolute;
     left: 10%;
+    z-index: 10;
     color: black;
     img{
         width: 100%;
@@ -93,6 +147,11 @@ const Stats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img{
+        width: 2rem;
+        height: 2rem;
+        display: inline;
+    }
 `
 
 const Info = styled(motion.div)`
