@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
     body{
         font-family: 'Montserrat', sans-serif;
         width: 100%;
+        overflow-x: hidden;
         background-color: #241f1f;
     }
     h2{

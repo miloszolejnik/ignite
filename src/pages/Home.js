@@ -13,6 +13,7 @@ import GameDetail from "../componenst/GameDetail"
 //Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { fadeIn } from "../animations";
 
 
 const Home = () => {
@@ -39,7 +40,7 @@ const Home = () => {
     const { popular, newGames, upcoming, searched } = useSelector(state => state.games);
 
     return (
-        <GameList>
+        <GameList variants={fadeIn} initial='hidden' animate="show">
             {pathID && <GameDetail />}
             {searched.length ? (
                 <div className="searched">

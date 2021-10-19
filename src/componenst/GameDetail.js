@@ -5,6 +5,7 @@ import { smallImage } from "../util";
 //Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { popup } from "../animations";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -72,7 +73,7 @@ const GameDetail = ({ pathID }) => {
         <>
             {!isLoading && (
                 <CardShadow onClick={exitDetailHandler} className="shadow">
-                    <Detail>
+                    <Detail variants={popup} initial='hidden' animate="show">
                         <Stats>
                             <div className="rating">
                                 <h3>{game.name}</h3>
@@ -113,7 +114,7 @@ const GameDetail = ({ pathID }) => {
 const CardShadow = styled(motion.div)`
     width: 100%;
     min-height: 100vh;
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: rgba(0,0,0, 0.5);
     position: fixed;
     z-index: 5;
