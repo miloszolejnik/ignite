@@ -133,7 +133,7 @@ const Detail = styled(motion.div)`
     width: 80%;
     border-radius: 1rem;
     padding: 2rem 5rem;
-    background-color: white;
+    background-color: #000000;
     position: absolute;
     left: 10%;
     z-index: 10;

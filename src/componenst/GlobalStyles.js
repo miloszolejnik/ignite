@@ -20,23 +20,28 @@ const GlobalStyle = createGlobalStyle`
     body{
         font-family: 'Montserrat', sans-serif;
         width: 100%;
+        background-color: #241f1f;
     }
     h2{
         font-size: 3rem;
         font-family: 'Abril Fatface', cursive;
         font-weight: lighter;
-        color: #333;
+        color: #ff7676;
+        text-shadow: 2px 2px #00000086;
     }
     h3{
         font-size: 1.3rem;
         color: #333;
         padding: 1.5rem 0rem;
+        color: #ff7676;
+        text-shadow: 2px 2px #00000086;
 
     }
     p{
         font-size: 1.2rem;
         line-height: 200%;
-        color: #696969;
+        color: #e7e7e7;
+        text-shadow: 2px 2px #00000086;
     }
     a{
         text-decoration: none;
@@ -44,6 +49,10 @@ const GlobalStyle = createGlobalStyle`
     }
     img{
         display: block;
+    }
+    input{
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
     }
 `
 
